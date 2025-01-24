@@ -3,33 +3,28 @@ name: Deploy to Deploy Branch
 on:
     push:
         branches:
-            - main # Trigger the workflow when changes are pushed to the "main" branch
+            - main
 
 jobs:
-    build-and-deploy:
+    deploy:
         runs-on: ubuntu-latest
 
+        permissions:
+            contents: write # Allows pushing changes to the repository
+
         steps:
-            # Step 1: Check out the code
-            - name: Checkout code
+            - name: Checkout repository
               uses: actions/checkout@v3
 
-            # Step 2: Set up Node.js
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 18 # Use the version of Node.js required for your project
+            - name: Install dependencies
+              run: npm install
 
-            # Step 3: Install dependencies and build the project
-            - name: Install dependencies and build
-              run: |
-                  npm install
-                  npm run build # This will generate the "dist" folder using Vite
+            - name: Build project
+              run: npm run build
 
-            # Step 4: Push the "dist" folder to the deploy branch
             - name: Deploy to deploy branch
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
-                  publish_branch: deploy # Push the contents of "dist" to the "deploy" branch
+                  publish_branch: deploy
