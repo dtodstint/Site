@@ -346,6 +346,22 @@ body {
     align-items: center;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.book-demanding-btn {
+    background-color: #ee7631;
+    margin-top: 12px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 /* ========================================================= Service Area Section =============================================== */
 /* Service Area Section */
 .service-area {
