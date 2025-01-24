@@ -3,3 +3,5 @@ dist/
 .vscode
 extras/
 .env
+.git
+.nojekyll
