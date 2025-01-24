@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon"
+    href="/assets/faviconn/https://res.cloudinary.com/dlsujv3gk/image/upload/v1737405255/logo-DRI2F1Ze_l8hhh1.webp"
+    type="image/png">
+  <title>dtodstint</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group label .required {
+      color: red;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+
+    .note {
+      color: #555;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+
+    .services-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      /* Maintain a gap for small screens as well */
+      justify-content: space-between;
+    }
+
+    .services-group label {
+      width: 48%;
+      /* Keep two items per row */
+      padding: 10px;
+      background-color: #f7f7f7;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: normal;
+      box-sizing: border-box;
+    }
+
+    .services-group input {
+      margin-right: 10px;
+      width: auto;
+    }
+
+    /* For smaller screens, ensure the spacing is consistent */
+    @media (max-width: 600px) {
+      .services-group label {
+        width: 48%;
+        /* Keep two items per row */
+        font-size: 0.9em;
+        /* Slightly smaller font size */
+        padding: 10px;
+        /* Keep the same padding */
+      }
+
+      .form-container {
+        padding: 15px;
+      }
+    }
+
+    /* Small Screen Adjustments */
+    @media (max-width: 600px) {
+      .services-group label {
+        width: 100%;
+        /* Full width for smaller screens */
+        font-size: 0.9em;
+        /* Slightly smaller font size for better fit */
+        padding: 8px;
+        /* Reduced padding for better space usage */
+      }
+
+      .form-container {
+        padding: 15px;
+        /* Reduced padding */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="form-container">
+    <p class="note"><span class="required">*</span> Indicates required fields</p>
+    <form id="serviceForm" onsubmit="handleFormSubmit(event)">
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Name <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Gmail (optional)</label>
+        <input type="text" id="email" name="email">
+      </div>
+
+      <!-- Contact Number -->
+      <div class="form-group">
+        <label for="contact">Contact Number <span class="required">*</span></label>
+        <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" title="Enter a valid 10-digit contact number"
+          required>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address (Currently only available in Delhi-NCR) <span class="required">*</span></label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+      </div>
+
+      <!-- House No -->
+      <div class="form-group">
+        <label for="house_no">House No <span class="required">*</span></label>
+        <input type="text" id="house_no" name="house_no" required>
+      </div>
+
+      <!-- Landmark -->
+      <div class="form-group">
+        <label for="landmark">Landmark <span class="required">*</span></label>
+        <input type="text" id="landmark" name="landmark" required>
+      </div>
+
+      <!-- Pincode -->
+      <div class="form-group">
+        <label for="pincode">Pincode <span class="required">*</span></label>
+        <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" title="Enter a valid 6-digit pincode"
+          required>
+      </div>
+
+      <!-- Service Section -->
+      <div class="form-group">
+        <label>Service(s) Needed <span class="required">*</span>:</label>
+        <div class="services-group">
+          <label><input type="checkbox" name="service" value="Home Cleaning"> Home Cleaning</label>
+          <label><input type="checkbox" name="service" value="Cook"> Cook</label>
+          <label><input type="checkbox" name="service" value="Dog Walker"> Dog Walker</label>
+          <label><input type="checkbox" name="service" value="Plumber"> Plumber</label>
+          <label><input type="checkbox" name="service" value="Electrician"> Electrician</label>
+          <label><input type="checkbox" name="service" value="Laundry Service"> Laundry Service</label>
+          <label><input type="checkbox" name="service" value="Carpenter"> Carpenter</label>
+          <label><input type="checkbox" name="service" value="On-site Salon Service"> On-site Salon Service</label>
+          <label><input type="checkbox" name="service" value="On-site Musical Band"> On-site Musical Band</label>
+          <label><input type="checkbox" name="service" value="Bike Service"> Bike Service</label>
+          <label><input type="checkbox" name="service" value="Water Tank Cleaning"> Water Tank Cleaning</label>
+          <label><input type="checkbox" name="service" value="Fish Aquarium Cleaning"> Fish Aquarium Cleaning</label>
+        </div>
+      </div>
+
+      <!-- Timing Section -->
+      <div class="form-group">
+        <label for="timing">Preferred Time Slot <span class="required">*</span></label>
+        <select id="timing" name="timing" required>
+          <option value="6:00 AM - 8:00 AM">6:00 AM - 8:00 AM</option>
+          <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
+          <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
+          <option value="12:00 PM - 2:00 PM">12:00 PM - 2:00 PM</option>
+          <option value="2:00 PM - 4:00 PM">2:00 PM - 4:00 PM</option>
+          <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
+          <option value="6:00 PM - 8:00 PM">6:00 PM - 8:00 PM</option>
+          <option value="8:00 PM - 10:00 PM">8:00 PM - 10:00 PM</option>
+          <option value="from 10:00 PM">from 10:00 PM</option>
+        </select>
+      </div>
+
+      <!-- Date Section -->
+      <div class="form-group">
+        <label for="date">Preferred Date <span class="required">*</span></label>
+        <input type="date" id="date" name="date" required>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      // Gather form data
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const contact = document.getElementById("contact").value;
+      const address = document.getElementById('address').value;
+      const houseNumber = document.getElementById("house_no").value;
+      const landmark = document.getElementById("landmark").value || "N/A";
+      const pincode = document.getElementById("pincode").value || "N/A";
+
+      // Get the selected services
+      const services = Array.from(document.querySelectorAll('input[name="service"]:checked')).map(el => el.value).join(", ");
+
+      const timing = document.getElementById("timing").value;
+      const date = document.getElementById("date").value;
+
+      // Construct the mailto URL
+      const mailtoLink = `mailto:instint37@gmail.com?subject=Service Request&body=` +
+        `Name: ${name}%0A` +
+        `Gmail: ${email}%0A` +
+        `Contact: ${contact}%0A` +
+        `Address: ${address}%0A` +
+        `House No: ${houseNumber}%0A` +
+        `Landmark: ${landmark}%0A` +
+        `Pincode: ${pincode}%0A` +
+        `Service(s) Needed: ${services}%0A` +
+        `Preferred Timing: ${timing}%0A` +
+        `Preferred Date: ${date}`;
+
+      // Open mail client with prefilled data
+      window.location.href = mailtoLink;
+    }
+
+    // Function to check localStorage and update checkboxes
+    function checkCartItems() {
+      // Retrieve cart data from localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Iterate over each cart item
+      cart.forEach((item) => {
+        // Find the checkbox that matches the item's title
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${item.title}"]`);
+        if (checkbox) {
+          checkbox.checked = true; // Check the checkbox if it exists
+        }
+      });
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', checkCartItems);
+
+
+  </script>
+</body>
+
+</html>

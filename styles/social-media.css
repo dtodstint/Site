@@ -1,0 +1,107 @@
+/* Social Media Menu */
+#message-icon {
+    display: none; /* Initially hidden */
+}
+.social-media-menu {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1000;
+}
+
+/* Main Icon */
+.main-icon {
+    background-color: #007bff; /* Blue background */
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.main-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+/* Social Icons (Initially hidden) */
+.social-icons {
+    display: none;
+    padding: 0;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Social Icons - Vertical Layout */
+.social-icons a {
+    color: white;
+    margin: 12px 0; /* Vertical spacing between icons */
+    font-size: 28px;
+    text-decoration: none;
+    display: block; /* Stack icons vertically */
+    transition: color 0.3s ease;
+}
+
+/* Individual Icon Colors */
+/* .facebook-icon i {
+    padding-left:5px ;
+    color: #3b5998; 
+} */
+
+.twitter-icon i {
+    padding-left:5px ;
+    color: #1da1f2; /* Twitter Blue */
+}
+
+.instagram-icon i {
+    padding-left:5px ;
+    color: #e1306c; /* Instagram Pink */
+}
+
+.email-icon i {
+    padding-left:5px ;
+    color: #0077b5; /* email Blue */
+}
+
+.whatsapp-icon i {
+        padding-left:5px ;
+    color: #25d366; /* WhatsApp Green */
+}
+
+/* Hover Effects for Icons */
+.social-icons a:hover {
+    transform: scale(1.2); /* Slight zoom effect */
+}
+
+.close-icon {
+    right: 45px;
+    background: none;
+    border: none;
+    color: #ff5c5c;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: 15px; /* Space between close button and last icon */
+    transition: color 0.3s ease;
+}
+
+.close-icon:hover {
+    color: #ff5c5c; /* Red color for close icon hover */
+}
+
+/* Show social icons when active */
+.social-icons.active {
+    display: block; /* Show the social icons */
+}
+
+/* Transition effect for smooth opening */
+.social-icons {
+    transition: all 0.3s ease;
+}
+
+/* Slight zoom effect for message icon */
+.main-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+}
+

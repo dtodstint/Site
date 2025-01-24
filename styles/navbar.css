@@ -1,0 +1,134 @@
+/* Navbar styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease; /* Smooth transition for hiding */
+}
+
+.navbar a {
+    color: rgb(217, 232, 240);
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+}
+
+.navbar a:hover {
+    color: #ee7631;
+    text-decoration: underline;
+}
+
+.navbar .logo {
+    border: 2px solid;
+    border-color: #f48b29;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    margin-right: 40px;
+}
+
+.navbar ul li {
+    margin-left: 10px;
+}
+
+.menu-toggle {
+    height: 100px;
+    font-size: 30px;
+    display: none;
+    background-color: transparent;
+    color: rgb(210, 7, 7);
+    cursor: pointer;
+    padding: 2px;
+    border: none;
+    z-index: 10;
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        display: none;
+        width: 90%;
+        align-items: center;
+        position: absolute;
+        margin-right: 0;
+        top: 35px;
+        background-color: #659a99;
+        z-index: 1;
+    }
+
+    .navbar ul li {
+        margin: 8px 0;
+    }
+
+    .navbar ul.show {
+        border-radius: 10px;
+        display: flex;
+    }
+
+    .menu-toggle {
+        font-size: 30px;
+        color: #f4f1f1;
+        display: block; /* Show the menu toggle button */
+        position: absolute; /* Position it absolutely */
+        right: 20px; /* Align to the right */
+        top: 10px; /* Adjust vertical position */
+    }
+    .navbar .logo {
+        width: 100px;
+        height: 100px;
+        align-items: center;
+    }
+
+    .navbar .menu-toggle b {
+        margin-right: 20px;
+    }
+}
+
+/* Adjust for very small screens */
+@media (max-width: 506px) and (max-height: 280px) {
+    .navbar .logo {
+        display: block; /* Ensure toggle is visible */
+        position: absolute; /* Position it absolutely */
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Shift left by half its width */
+        top: 5px; /* Keep it at the top */
+    }
+
+    .menu-toggle {
+        display: block; /* Ensure toggle is visible */
+        position: absolute; /* Position it absolutely */
+        right: 2%; /* Center horizontally */
+        transform: translateX(-50%); /* Shift left by half its width */
+        top: 5px; /* Keep it at the top */
+    }
+
+    .navbar ul {
+        position: absolute;
+        top: 50px; /* Keep dropdown below the toggle */
+        right: -13%; /* Center dropdown */
+        transform: translateX(-50%); /* Shift left by half its width */
+        width: auto; /* Allow dropdown width to adjust */
+    }
+}
