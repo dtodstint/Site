@@ -28,6 +28,3 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./dist
                   publish_branch: deploy
-
-            - name: Remove unnecessary files
-              run: rm -rf .git .nojekyll
