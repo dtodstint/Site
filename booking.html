@@ -189,7 +189,7 @@
         <div class="services-group">
           <label><input type="checkbox" name="service" value="Home Cleaning"> Home Cleaning</label>
           <label><input type="checkbox" name="service" value="Cook"> Cook</label>
-          <label><input type="checkbox" name="service" value="Dog Walker"> Dog Walker</label>
+          <label><input type="checkbox" name="service" value="Movers and Packers">Movers and Packers</label>
           <label><input type="checkbox" name="service" value="Plumber"> Plumber</label>
           <label><input type="checkbox" name="service" value="Electrician"> Electrician</label>
           <label><input type="checkbox" name="service" value="Laundry Service"> Laundry Service</label>
@@ -198,7 +198,7 @@
           <label><input type="checkbox" name="service" value="On-site Musical Band"> On-site Musical Band</label>
           <label><input type="checkbox" name="service" value="Bike Service"> Bike Service</label>
           <label><input type="checkbox" name="service" value="Water Tank Cleaning"> Water Tank Cleaning</label>
-          <label><input type="checkbox" name="service" value="Fish Aquarium Cleaning"> Fish Aquarium Cleaning</label>
+          <label><input type="checkbox" name="service" value="Driver">Driver</label>
         </div>
       </div>
 
@@ -328,6 +328,16 @@
 
     // Function to check localStorage and update checkboxes
     function checkCartItems() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const service = urlParams.get("service");
+
+      if (service) {
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${service}"]`);
+        if (checkbox) {
+          checkbox.checked = true;
+        }
+      }
+
       // Retrieve cart data from localStorage
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
