@@ -233,13 +233,17 @@
 
       <!-- Submit Button -->
       <div class="form-group">
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit-btn">Submit</button>
       </div>
     </form>
   </div>
   <script>
     function handleFormSubmit(event) {
       event.preventDefault();
+      const submitButton = document.getElementById("submit-btn");
+      submitButton.disabled = true;
+      submitButton.innerText = "Submitting...";
+
 
       // Gather form data
       const name = document.getElementById("name").value;
@@ -256,21 +260,77 @@
       const timing = document.getElementById("timing").value;
       const date = document.getElementById("date").value;
 
-      // Construct the mailto URL
-      const mailtoLink = `mailto:instint37@gmail.com?subject=Service Request&body=` +
-        `Name: ${name}%0A` +
-        `Gmail: ${email}%0A` +
-        `Contact: ${contact}%0A` +
-        `Address: ${address}%0A` +
-        `House No: ${houseNumber}%0A` +
-        `Landmark: ${landmark}%0A` +
-        `Pincode: ${pincode}%0A` +
-        `Service(s) Needed: ${services}%0A` +
-        `Preferred Timing: ${timing}%0A` +
-        `Preferred Date: ${date}`;
+      // Collect the form data
 
-      // Open mail client with prefilled data
-      window.location.href = mailtoLink;
+      // Construct the payload
+      const payload = {
+        name: name,
+        email: email,
+        contact: contact,
+        address: {
+          fullAddress: address,
+          houseNumber: houseNumber,
+          landmark: landmark,
+          pincode: pincode,
+        },
+        services: services,
+        timing: timing,
+        date: date,
+      };
+
+      // Make the fetch POST request
+      const postData = async (url, payload, retries = 2) => {
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Failed to submit booking.");
+          }
+
+          const data = await response.json();
+          console.log("Success:", data);
+          alert("Booking submitted successfully! You will receive an email shortly.");
+        } catch (error) {
+          console.error("Error:", error);
+
+          if (retries > 0) {
+            console.log(`Retrying... (${3 - retries + 1})`);
+            await postData(url, payload, retries - 1);
+          } else {
+            alert("There was an error submitting your booking. Please try again later.");
+          }
+        } finally {
+          // Re-enable the button
+          submitButton.disabled = false;
+          submitButton.innerText = "Submit";
+        }
+
+      };
+
+      postData("https://bookings-api-xi.vercel.app/api/booking", payload);
+
+      // Construct the mailto URL
+      // const mailtoLink = `mailto:instint37@gmail.com?subject=Service Request&body=` +
+      //   `Name: ${name}%0A` +
+      //   `Gmail: ${email}%0A` +
+      //   `Contact: ${contact}%0A` +
+      //   `Address: ${address}%0A` +
+      //   `House No: ${houseNumber}%0A` +
+      //   `Landmark: ${landmark}%0A` +
+      //   `Pincode: ${pincode}%0A` +
+      //   `Service(s) Needed: ${services}%0A` +
+      //   `Preferred Timing: ${timing}%0A` +
+      //   `Preferred Date: ${date}`;
+
+      // // Open mail client with prefilled data
+      // window.location.href = mailtoLink;
     }
 
     // Function to check localStorage and update checkboxes
