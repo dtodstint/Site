@@ -27,8 +27,9 @@ export default defineConfig(({ mode }) => {
         plugins: [
             {
                 name: "html-transform",
-                transformIndexHtml(html) {
-                    if (isProduction) {
+                transformIndexHtml(html, { filename }) {
+                    // Check if the file being processed is index.html
+                    if (filename.endsWith("index.html") && isProduction) {
                         // Add Google Tag Manager script in production
                         return html.replace(
                             "</head>",
@@ -42,7 +43,7 @@ export default defineConfig(({ mode }) => {
                             </head>`
                         );
                     }
-                    return html; // No changes for other modes
+                    return html; // No changes for other HTML files
                 },
             },
         ],
