@@ -14,7 +14,6 @@ export default defineConfig(({ mode }) => {
                     booking: resolve(__dirname, "booking.html"),
                     services: resolve(__dirname, "services.html"),
                     delhincr: resolve(__dirname, "script/delhincr.js"),
-                    register: resolve(__dirname, "register.html"),
                     flat: resolve(__dirname, "flat/flat.html"),
                     script: resolve(__dirname, "script/script.js"),
                     privacy_policy: resolve(
