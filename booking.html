@@ -160,7 +160,7 @@
 
       <!-- Address -->
       <div class="form-group">
-        <label for="address">Address (Currently only available in Delhi-NCR) <span class="required">*</span></label>
+        <label for="address">Address<span class="required">*</span></label>
         <textarea id="address" name="address" rows="3" required></textarea>
       </div>
 
@@ -203,20 +203,12 @@
       </div>
 
       <!-- Timing Section -->
-      <div class="form-group">
-        <label for="timing">Preferred Time Slot <span class="required">*</span></label>
-        <select id="timing" name="timing" required>
-          <option value="6:00 AM - 8:00 AM">6:00 AM - 8:00 AM</option>
-          <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
-          <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
-          <option value="12:00 PM - 2:00 PM">12:00 PM - 2:00 PM</option>
-          <option value="2:00 PM - 4:00 PM">2:00 PM - 4:00 PM</option>
-          <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
-          <option value="6:00 PM - 8:00 PM">6:00 PM - 8:00 PM</option>
-          <option value="8:00 PM - 10:00 PM">8:00 PM - 10:00 PM</option>
-          <option value="from 10:00 PM">from 10:00 PM</option>
-        </select>
-      </div>
+     <!-- Service Section -->
+    <div class="form-group">
+      <label>Service(s) Needed <span class="required">*</span>:</label>
+      <div class="services-group"></div> <!-- Keep this empty for dynamic rendering -->
+    </div>
+
 
       <!-- Date Section -->
       <div class="form-group">
@@ -294,7 +286,7 @@
           console.error("Error:", error);
 
           if (retries > 0) {
-            console.log(`Retrying... (${3 - retries + 1})`);
+            console.log(Retrying... (${3 - retries + 1}));
             await postData(url, payload, retries - 1);
           } else {
             alert("There was an error submitting your booking. Please try again later.");
@@ -310,21 +302,71 @@
       postData("https://bookings-api-xi.vercel.app/api/booking", payload);
 
       // Construct the mailto URL
-      // const mailtoLink = `mailto:instint37@gmail.com?subject=Service Request&body=` +
-      //   `Name: ${name}%0A` +
-      //   `Gmail: ${email}%0A` +
-      //   `Contact: ${contact}%0A` +
-      //   `Address: ${address}%0A` +
-      //   `House No: ${houseNumber}%0A` +
-      //   `Landmark: ${landmark}%0A` +
-      //   `Pincode: ${pincode}%0A` +
-      //   `Service(s) Needed: ${services}%0A` +
-      //   `Preferred Timing: ${timing}%0A` +
-      //   `Preferred Date: ${date}`;
+      // const mailtoLink = mailto:instint37@gmail.com?subject=Service Request&body= +
+      //   Name: ${name}%0A +
+      //   Gmail: ${email}%0A +
+      //   Contact: ${contact}%0A +
+      //   Address: ${address}%0A +
+      //   House No: ${houseNumber}%0A +
+      //   Landmark: ${landmark}%0A +
+      //   Pincode: ${pincode}%0A +
+      //   Service(s) Needed: ${services}%0A +
+      //   Preferred Timing: ${timing}%0A +
+      //   Preferred Date: ${date};
 
       // // Open mail client with prefilled data
       // window.location.href = mailtoLink;
     }
+  // Function to dynamically update the services list based on localStorage
+function updateServicesDisplay() {
+  // Define all available services
+  const allServices = [
+    "Home Cleaning",
+    "Cook",
+    "Movers and Packers",
+    "Plumber",
+    "Electrician",
+    "Laundry Service",
+    "Carpenter",
+    "On-site Salon Service",
+    "On-site Musical Band",
+    "Bike Service",
+    "Water Tank Cleaning",
+    "Driver"
+  ];
+
+  // Retrieve selected services from localStorage
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const selectedServices = cart.map(item => item.title);
+
+  // Get the services group container
+  const servicesGroup = document.querySelector(".services-group");
+  servicesGroup.innerHTML = ""; // Clear existing content
+
+  // Determine which services to display
+  const servicesToDisplay = selectedServices.length > 0 ? selectedServices : allServices;
+
+  // Add or remove the loaded-from-storage class
+  if (selectedServices.length > 0) {
+    servicesGroup.classList.add("loaded-from-storage");
+  } else {
+    servicesGroup.classList.remove("loaded-from-storage");
+  }
+
+  // Populate the services group with checkboxes
+  servicesToDisplay.forEach(service => {
+    const label = document.createElement("label");
+    label.innerHTML = `
+      <input type="checkbox" name="service" value="${service}" ${selectedServices.includes(service) ? "checked" : ""}>
+      ${service}
+    `;
+    servicesGroup.appendChild(label);
+  });
+}
+
+// Call the function on page load
+document.addEventListener("DOMContentLoaded", updateServicesDisplay);
+
 
     // Function to check localStorage and update checkboxes
     function checkCartItems() {
@@ -332,7 +374,7 @@
       const service = urlParams.get("service");
 
       if (service) {
-        const checkbox = document.querySelector(`input[type="checkbox"][value="${service}"]`);
+        const checkbox = document.querySelector(input[type="checkbox"][value="${service}"]);
         if (checkbox) {
           checkbox.checked = true;
         }
@@ -344,7 +386,7 @@
       // Iterate over each cart item
       cart.forEach((item) => {
         // Find the checkbox that matches the item's title
-        const checkbox = document.querySelector(`input[type="checkbox"][value="${item.title}"]`);
+        const checkbox = document.querySelector(input[type="checkbox"][value="${item.title}"]);
         if (checkbox) {
           checkbox.checked = true; // Check the checkbox if it exists
         }
