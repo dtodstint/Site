@@ -16,9 +16,9 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: #003366; /* Consistent background */
+    background-color: transparent; /* No solid background */
     transition: transform 0.3s ease; /* Smooth transition for hiding */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: none; /* Removed shadow */
 }
 
 /* Navbar Links */
@@ -42,7 +42,7 @@
     border: 2px solid;
     border-color: #f48b29;
     border-radius: 50px;
-    width: 80px; /* Reduced size for better spacing */
+    width: 80px;
     height: 80px;
 }
 
@@ -51,10 +51,23 @@
     list-style-type: none;
     display: flex;
     margin-right: 40px;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
 }
 
 .navbar ul li {
     margin-left: 10px;
+}
+
+/* Cart (Bucket) Icon Styling */
+.cart-icon {
+    position: relative;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Adjusted for better spacing */
 }
 
 /* Menu Toggle Button */
@@ -72,8 +85,9 @@
 /* Responsive Layout for Small Screens */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        padding: 10px 10px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 15px;
     }
 
     .navbar ul {
@@ -84,7 +98,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: #659a99;
+        background-color: #003366 !important; /* Background color restored */
         border-radius: 10px;
         z-index: 1;
     }
@@ -112,7 +126,15 @@
         width: 80px;
         height: 80px;
         align-items: center;
-        margin-bottom: 10px; /* Ensure space between logo and links */
+        margin-bottom: 10px;
+    }
+
+    /* Cart (Bucket) Icon Fix */
+    .cart-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -136,11 +158,19 @@
         top: 100px;
         left: 0;
         width: 100%;
-        background-color: #659a99;
+        background-color: #003366 !important; /* Ensuring background color for mobile menu */
     }
 
     .navbar ul li {
         margin: 5px 0;
+    }
+
+    /* Fix Cart (Bucket) Icon Alignment */
+    .cart-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -153,10 +183,23 @@
     }
 
     #searchInput {
-        width: 100%; /* Full width for small screens */
+        width: 100%;
         padding: 8px;
         border: 2px solid #f48b29;
         border-radius: 50px;
         font-size: 14px;
     }
 }
+.menu-toggle {
+    background-color: #f48b29; /* Set the background color */
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .menu-toggle:hover {
+    background-color: #e07c25; /* Darker shade on hover */
+  }
