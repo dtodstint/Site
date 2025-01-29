@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", updateServicesDisplay);
       const service = urlParams.get("service");
 
       if (service) {
-        const checkbox = document.querySelector(input[type="checkbox"][value="${service}"]);
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${service}"]`);
         if (checkbox) {
           checkbox.checked = true;
         }
@@ -386,7 +386,7 @@ document.addEventListener("DOMContentLoaded", updateServicesDisplay);
       // Iterate over each cart item
       cart.forEach((item) => {
         // Find the checkbox that matches the item's title
-        const checkbox = document.querySelector(input[type="checkbox"][value="${item.title}"]);
+        const checkbox = document.querySelector(`input[type="checkbox"][value="${item.title}"]`);
         if (checkbox) {
           checkbox.checked = true; // Check the checkbox if it exists
         }
