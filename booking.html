@@ -249,18 +249,21 @@
 
       // Construct the payload
       const payload = {
-        name: name,
-        email: email,
-        contact: contact,
+        id: id, // Ensure this is a unique booking ID
+        service: service,
+        customer: {
+          name: name,
+          phone: contact, // Renamed to match schema
+        },
+        date: date,
+        time: timing, // Changed from 'timing' to 'time' to match schema
         address: {
           fullAddress: address,
           houseNumber: houseNumber,
-          landmark: landmark,
-          pincode: pincode,
+          landmark: landmark || "N/A",
+          pincode: pincode || "N/A",
         },
-        services: services,
-        timing: timing,
-        date: date,
+        status: "Pending", // Default value
       };
 
       // Make the fetch POST request
