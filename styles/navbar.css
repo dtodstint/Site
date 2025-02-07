@@ -16,9 +16,9 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: transparent; /* No solid background */
-    transition: transform 0.3s ease; /* Smooth transition for hiding */
-    box-shadow: none; /* Removed shadow */
+    background-color: transparent;
+    transition: transform 0.3s ease;
+    box-shadow: none;
 }
 
 /* Navbar Links */
@@ -27,7 +27,7 @@
     text-decoration: none;
     padding: 14px 20px;
     display: block;
-    font-size: 16px; /* Improved readability */
+    font-size: 16px;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -44,6 +44,7 @@
     border-radius: 50px;
     width: 80px;
     height: 80px;
+    transition: transform 0.3s ease;
 }
 
 /* Navbar Links List */
@@ -115,14 +116,14 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: #003366 !important; /* Background color restored */
+        background-color: #003366 !important;
         border-radius: 10px;
         z-index: 1;
     }
 
     .navbar ul li {
         margin: 8px 0;
-        width: 100%; /* Full width for better spacing */
+        width: 100%;
         text-align: center;
     }
 
@@ -142,8 +143,10 @@
     .navbar .logo {
         width: 80px;
         height: 80px;
-        align-items: center;
-        margin-bottom: 10px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 10px;
     }
 
     /* Cart positioning for mobile */
@@ -189,7 +192,7 @@
         top: 100px;
         left: 0;
         width: 100%;
-        background-color: #003366 !important; /* Ensuring background color for mobile menu */
+        background-color: #003366 !important;
     }
 
     .navbar ul li {
@@ -221,16 +224,17 @@
         font-size: 14px;
     }
 }
+
 .menu-toggle {
-    background-color: #f48b29; /* Set the background color */
+    background-color: #f48b29;
     border: none;
     padding: 10px;
     font-size: 24px;
     cursor: pointer;
     color: white;
     border-radius: 5px;
-  }
+}
   
-  .menu-toggle:hover {
-    background-color: #e07c25; /* Darker shade on hover */
-  }
+.menu-toggle:hover {
+    background-color: #e07c25;
+}
