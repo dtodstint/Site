@@ -490,11 +490,6 @@
   </footer>
 
   <script>
-    // Menu toggle functionality
-    document.getElementById('menuToggle').addEventListener('click', function () {
-      document.getElementById('navbar-links').classList.toggle('show');
-    });
-
     // Search functionality
     document.getElementById('searchInput').addEventListener('input', showSuggestions);
 
@@ -542,20 +537,8 @@
       });
     }
 
-    // Hide navbar on scroll down, show on scroll up
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function () {
-      let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScrollTop) {
-        // Scrolling down
-        document.querySelector('.navbar').style.transform = 'translateY(-100%)';
-      } else {
-        // Scrolling up
-        document.querySelector('.navbar').style.transform = 'translateY(0)';
-      }
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    }, false);
   </script>
+  <script src="./script/script.js" type="module"></script>
   <script src="./script/social-media.js" type="module"></script>
   <script src="./script/delhincr.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
