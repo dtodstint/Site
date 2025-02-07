@@ -191,7 +191,6 @@
       font-size: 16px;
       z-index: 1000;
     }
-
   </style>
 
   <script type="module" crossorigin src="/assets/services-ebAJKpaD.js"></script>
@@ -490,7 +489,7 @@
     </div>
   </template>
   <footer>
-    <p style="color: #b7b7b7;">All rights reserved © dtodstint</p>
+    p style="color: #b7b7b7;">All rights reserved © dtodstint</p>
   </footer>
 
   <script>
@@ -515,14 +514,14 @@
         }
       });
 
-        if (matches.length > 0) {
+      if (matches.length > 0) {
         suggestionsContainer.innerHTML = matches
-            .map(match => `<div onclick="selectService('${match}')">${match}</div>`)
-            .join('');
+          .map(match => `<div onclick="selectService('${match}')">${match}</div>`)
+          .join('');
         suggestionsContainer.style.display = 'block';
-        } else {
-          suggestionsContainer.style.display = 'none';
-        }
+      } else {
+        suggestionsContainer.style.display = 'none';
+      }
 
     }
 
