@@ -161,7 +161,7 @@
       <!-- Address -->
       <div class="form-group">
         <label for="address">Address<span class="required">*</span></label>
-        <textarea id="address" name="address" rows="3" required></textarea>
+        <textarea id="address" name="address" rows="3" style="resize: vertical;" required></textarea>
       </div>
 
       <!-- House No -->
@@ -202,12 +202,12 @@
         </div>
       </div>
 
-        <div class="form-group">
-          <div class="services-group"></div> <!-- Keep this empty for dynamic rendering -->
-        </div>
+      <div class="form-group">
+        <div class="services-group"></div> <!-- Keep this empty for dynamic rendering -->
+      </div>
 
       <!-- Timing Section -->
-        <div class="form-group">
+      <div class="form-group">
         <label for="timing">Preferred Time Slot <span class="required">*</span></label>
         <select id="timing" name="timing" required>
           <option value="6:00 AM - 8:00 AM">6:00 AM - 8:00 AM</option>
@@ -221,14 +221,12 @@
           <option value="from 10:00 PM">from 10:00 PM</option>
         </select>
       </div>
-     <!-- Service Section -->
-  
-
+      <!-- Service Section -->
 
       <!-- Date Section -->
       <div class="form-group">
         <label for="date">Preferred Date <span class="required">*</span></label>
-        <input type="date" id="date" name="date" required>
+        <input type="date" id="date" name="date" min=" " required>
       </div>
 
       <!-- Submit Button -->
@@ -238,6 +236,8 @@
     </form>
   </div>
   <script>
+    document.getElementById("date").min = new Date().toISOString().slice(0, 10);
+
     function handleFormSubmit(event) {
       event.preventDefault();
       const submitButton = document.getElementById("submit-btn");
@@ -268,9 +268,9 @@
         customer: {
           name: name,
           phone: contact, // Renamed to match schema
-          email:email
+          email: email
         },
-        
+
         date: date,
         time: timing, // Changed from 'timing' to 'time' to match schema
         address: {
@@ -336,55 +336,55 @@
       // // Open mail client with prefilled data
       // window.location.href = mailtoLink;
     }
-  // Function to dynamically update the services list based on localStorage
-function updateServicesDisplay() {
-  // Define all available services
-  const allServices = [
-    "Home Cleaning",
-    "Cook",
-    "Movers and Packers",
-    "Plumber",
-    "Electrician",
-    "Laundry Service",
-    "Carpenter",
-    "On-site Salon Service",
-    "On-site Musical Band",
-    "Bike Service",
-    "Water Tank Cleaning",
-    "Driver"
-  ];
+    // Function to dynamically update the services list based on localStorage
+    function updateServicesDisplay() {
+      // Define all available services
+      const allServices = [
+        "Home Cleaning",
+        "Cook",
+        "Movers and Packers",
+        "Plumber",
+        "Electrician",
+        "Laundry Service",
+        "Carpenter",
+        "On-site Salon Service",
+        "On-site Musical Band",
+        "Bike Service",
+        "Water Tank Cleaning",
+        "Driver"
+      ];
 
-  // Retrieve selected services from localStorage
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const selectedServices = cart.map(item => item.title);
+      // Retrieve selected services from localStorage
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const selectedServices = cart.map(item => item.title);
 
-  // Get the services group container
-  const servicesGroup = document.querySelector(".services-group");
-  servicesGroup.innerHTML = ""; // Clear existing content
+      // Get the services group container
+      const servicesGroup = document.querySelector(".services-group");
+      servicesGroup.innerHTML = ""; // Clear existing content
 
-  // Determine which services to display
-  const servicesToDisplay = selectedServices.length > 0 ? selectedServices : allServices;
+      // Determine which services to display
+      const servicesToDisplay = selectedServices.length > 0 ? selectedServices : allServices;
 
-  // Add or remove the loaded-from-storage class
-  if (selectedServices.length > 0) {
-    servicesGroup.classList.add("loaded-from-storage");
-  } else {
-    servicesGroup.classList.remove("loaded-from-storage");
-  }
+      // Add or remove the loaded-from-storage class
+      if (selectedServices.length > 0) {
+        servicesGroup.classList.add("loaded-from-storage");
+      } else {
+        servicesGroup.classList.remove("loaded-from-storage");
+      }
 
-  // Populate the services group with checkboxes
-  servicesToDisplay.forEach(service => {
-    const label = document.createElement("label");
-    label.innerHTML = `
+      // Populate the services group with checkboxes
+      servicesToDisplay.forEach(service => {
+        const label = document.createElement("label");
+        label.innerHTML = `
       <input type="checkbox" name="service" value="${service}" ${selectedServices.includes(service) ? "checked" : ""}>
       ${service}
     `;
-    servicesGroup.appendChild(label);
-  });
-}
+        servicesGroup.appendChild(label);
+      });
+    }
 
-// Call the function on page load
-document.addEventListener("DOMContentLoaded", updateServicesDisplay);
+    // Call the function on page load
+    document.addEventListener("DOMContentLoaded", updateServicesDisplay);
 
 
     // Function to check localStorage and update checkboxes
