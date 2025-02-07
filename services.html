@@ -193,10 +193,10 @@
     }
   </style>
 
-  <script type="module" crossorigin src="/assets/services-DFa2Jxgk.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/navbar-zCsFSXza.js">
+  <script type="module" crossorigin src="/assets/services-ClpAGfSH.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/script-BcHKMjds.js">
   <link rel="modulepreload" crossorigin href="/assets/social-media-NQidWaMP.js">
-  <link rel="stylesheet" crossorigin href="/assets/navbar-EZ6OxQ7d.css">
+  <link rel="stylesheet" crossorigin href="/assets/script-EZ6OxQ7d.css">
   <link rel="stylesheet" crossorigin href="/assets/services-BZywsmS0.css">
   <link rel="stylesheet" crossorigin href="/assets/social-media--SK3aDFZ.css">
 </head>
@@ -493,11 +493,6 @@
   </footer>
 
   <script>
-    // Menu toggle functionality
-    document.getElementById('menuToggle').addEventListener('click', function () {
-      document.getElementById('navbar-links').classList.toggle('show');
-    });
-
     // Search functionality
     document.getElementById('searchInput').addEventListener('input', showSuggestions);
 
@@ -545,19 +540,6 @@
       });
     }
 
-    // Hide navbar on scroll down, show on scroll up
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function () {
-      let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScroll > lastScrollTop) {
-        // Scrolling down
-        document.querySelector('.navbar').style.transform = 'translateY(-100%)';
-      } else {
-        // Scrolling up
-        document.querySelector('.navbar').style.transform = 'translateY(0)';
-      }
-      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    }, false);
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
