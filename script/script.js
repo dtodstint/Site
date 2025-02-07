@@ -2,8 +2,8 @@ const menuToggle = document.getElementById("menuToggle");
 const navbarLinks = document.getElementById("navbar-links");
 const navLinks = document.querySelectorAll(".navbar a");
 const navbar = document.getElementById("navbar");
-const logo = document.querySelector(".navbar .logo"); // Select the logo
-const toggleButton = document.querySelector(".menu-toggle"); // Select the toggle button
+const logo = document.querySelector(".navbar .logo");
+const toggleButton = document.querySelector(".menu-toggle");
 
 // Toggle menu on button click
 menuToggle.addEventListener("click", () => {
@@ -22,15 +22,22 @@ let lastScrollTop = 0;
 window.addEventListener("scroll", () => {
     let st = window.pageYOffset || document.documentElement.scrollTop;
 
-    // Hide navbar, logo, and toggle button when scrolling down
+    // Hide navbar and elements when scrolling down for all screen sizes
     if (st > lastScrollTop) {
-        navbar.style.transform = "translateY(-100%)"; // Hide navbar
-        logo.style.transform = "translateY(-100%)"; // Hide logo
-        toggleButton.style.transform = "translateY(-100%)"; // Hide toggle button
+        navbar.style.transform = "translateY(-100%)";
+        if (window.innerWidth <= 768) {
+            logo.style.transform = "translate(-50%, -100%)";
+        } else {
+            logo.style.transform = "translateY(-100%)";
+        }
     } else {
-        navbar.style.transform = "translateY(0)"; // Show navbar
-        logo.style.transform = "translateY(0)"; // Show logo
-        toggleButton.style.transform = "translateY(0)"; // Show toggle button
+        // Show navbar and elements when scrolling up
+        navbar.style.transform = "translateY(0)";
+        if (window.innerWidth <= 768) {
+            logo.style.transform = "translate(-50%, 0)";
+        } else {
+            logo.style.transform = "translateY(0)";
+        }
     }
 
     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
